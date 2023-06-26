@@ -1,0 +1,41 @@
+@layout('base')
+
+@section('body')
+<h1>Book Recommendations</h1>
+<form
+  hx-post="{{ route('book.store') }}"
+  hx-swap="beforeend"
+  hx-target="#new-book"
+  class="mb-3"
+  _="on htmx:afterRequest reset() me"
+>
+  {{ csrfField() }}
+  <input
+    type="text"
+    placeholder="Book Title"
+    name="title"
+    class="form-control mb-3"
+  />
+  <input
+    type="text"
+    placeholder="Book Author"
+    name="author"
+    class="form-control mb-3"
+  />
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Book Title</th>
+      <th scope="col">Book Author</th>
+    </tr>
+  </thead>
+  <tbody id="new-book" hx-target="closest tr" hx-swap="outerHTML swap:0.5s">
+    @each(book in books)
+      @include('partials/tr-book')
+    @end
+  </tbody>
+</table>
+@end

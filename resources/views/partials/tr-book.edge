@@ -1,0 +1,20 @@
+<tr>
+  <td>{{ book.title }}</td>
+  <td>{{ book.author }}</td>
+  <td>
+    <button
+      class="btn btn-primary"
+      hx-get="{{ route('book.edit.form', { id: book.id }) }}"
+    >
+      Edit Title
+    </button>
+  </td>
+  <td>
+    <button
+      hx-delete="{{ route('book.destroy', { id: book.id }) }}"
+      class="btn btn-primary"
+    >
+      Delete
+    </button>
+  </td>
+</tr>

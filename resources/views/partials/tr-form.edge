@@ -1,0 +1,14 @@
+<tr hx-trigger="cancel" class="editing" hx-get="{{ route('book.row', { 'id': book.id }) }}">
+  <td><input name="title" value="{{ book.title }}" /></td>
+  <td>{{ book.author }}</td>
+  <td>
+    <button class="btn btn-primary" hx-get="{{ route('book.row', { 'id': book.id }) }}">Cancel</button>
+    <button
+      class="btn btn-primary"
+      hx-put="{{ route('book.update', { 'id': book.id }) }}"
+      hx-include="closest tr"
+    >
+      Save
+    </button>
+  </td>
+</tr>
